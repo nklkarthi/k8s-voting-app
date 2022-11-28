@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres-deploy
+  namespace: voting-app
   labels:
     name: postgres-deploy
     app: demo-voting-app
@@ -33,10 +34,8 @@ spec:
           volumeMounts:
             - name: db-data
               mountPath: /var/lib/postgres/data
+          resources: {}
       volumes:
         - name: db-data
           persistentVolumeClaim:
             claimName: postgres-pvc
-
-
-    
