@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: ingress-vote
   namespace: voting-app
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   rules:
   - host: app.sgocp.net
     http:
@@ -16,6 +15,13 @@ spec:
             port:
               number: 80
         path: /vote
-        pathType: Exact
+        pathType: Prefix
+      - backend:
+          service:
+            name: result-service
+            port:
+              number: 80
+        path: /result
+        pathType: Prefix
 status:
   loadBalancer: {}
