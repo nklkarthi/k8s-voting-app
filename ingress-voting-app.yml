@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-vote
+  namespace: voting-app
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: app.sgocp.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: voting-service
+            port:
+              number: 80
+        path: /vote
+        pathType: Exact
+status:
+  loadBalancer: {}

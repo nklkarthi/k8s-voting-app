@@ -6,6 +6,7 @@ metadata:
   labels:
     app: demo-voting-app
 spec:
+  storageClassName: managed-csi
   accessModes:
     - ReadWriteOnce
   resources:
